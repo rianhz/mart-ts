@@ -2,7 +2,8 @@ import { Button } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AiFillPlusSquare } from 'react-icons/ai';
 import { AiFillMinusSquare } from 'react-icons/ai';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { cartActions } from '../../features/CartList/cartSlice';
 import './cart.css';
 
 type PropsTypes = {
@@ -12,6 +13,7 @@ type PropsTypes = {
 
 const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
   const cartItem = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch()
   // const totalPrice = (items: StateType[]) => {
   //   return cartItem.reduce((acc: number, curr) => acc + curr.price * curr.quantity, 0);
   // };
@@ -36,13 +38,13 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
                     <p>Total : ${(el.price * el.quantity).toFixed(2)}</p>
                   </div>
                   <div className='cartRow3'>
-                    <AiFillMinusSquare style={{ fontSize: '35px', cursor: 'pointer' }} />
+                    <AiFillMinusSquare style={{ fontSize: '35px', cursor: 'pointer' }} onClick={() => dispatch(cartActions.removeQuantity(el))} />
 
                     <div>
                       <h5>{el.quantity}</h5>
                     </div>
 
-                    <AiFillPlusSquare style={{ fontSize: '35px', cursor: 'pointer' }} />
+                    <AiFillPlusSquare style={{ fontSize: '35px', cursor: 'pointer' }} onClick={() => dispatch(cartActions.addQuantity(el))} />
                   </div>
                 </div>
               </div>
