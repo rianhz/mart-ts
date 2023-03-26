@@ -10,4 +10,5 @@ export interface ProductType {
   category: string;
   image: string;
   quantity: number;
+  total_price :number
 }

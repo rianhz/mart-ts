@@ -1,4 +1,4 @@
-.container {
+.contain {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,10 +6,11 @@
   gap: 15px;
   box-shadow: 0px 5px 10px -3px rgb(183, 168, 168);
   border-radius: 10px;
-  margin-top: 100px;
+  margin-top: 140px;
 }
 
 .leftFiltered {
+  padding-left: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -17,11 +18,22 @@
   gap: 15px;
 }
 
-.group {
+.rightFiltered {
+  width: 30%;
   padding-right: 20px;
-  position: relative;
 }
 
-.inputProduct:focus ~ .icons {
+#search {
+  position: relative !important;
+}
+
+.icon{
+  position: absolute;
+  right: 0;
+  top: 26%;
+  font-size: 20px;
+}
+
+.inputProduct:focus ~ .icon {
   display: none;
 }

@@ -8,7 +8,17 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     getProducts(state, action) {
-      return action.payload
+      const newPayload = action.payload;
+      
+      if(newPayload){
+        newPayload.forEach((el:ProductType) => {
+          if(el.quantity === 1){
+            el.total_price = el.price
+          }
+        })
+      }
+
+     return newPayload
     },
   },
 });

@@ -1,20 +1,21 @@
 import React from 'react';
+
 import Form from 'react-bootstrap/Form';
-import styles from './Filter.module.css';
-// import { BiSearch } from 'react-icons/bi';
+import  './Filter.css';
+import { BiSearch } from 'react-icons/bi';
 
-const FilterBy: React.FC = () => {
+type PropsTypes = {
+  handleSelect : (e:React.ChangeEvent<HTMLSelectElement>) => void
+  handlePrice : (e:React.ChangeEvent<HTMLSelectElement>) => void
+  handleInputFilter : (e:React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const FilterBy: React.FC<PropsTypes> = ({handleSelect,handlePrice,handleInputFilter}) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.leftFiltered}>
+    <div className='contain'>
+      <div className='leftFiltered'>
         <Form.Group>
-          <Form.Label style={{ marginBottom: '0' }}>
-            <h4>Filter By : </h4>
-          </Form.Label>
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Select>
+          <Form.Select onChange={handleSelect}>
             <option value=''>Category</option>
             <option value='Electronics'>Electronics</option>
             <option value={`Women's Clothing`}>Women's Clothing</option>
@@ -23,11 +24,17 @@ const FilterBy: React.FC = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group>
-          <Form.Select>
+          <Form.Select onChange={handlePrice}>
             <option value=''>Price</option>
             <option value='low'>Low Cost</option>
             <option value='expensive'>High Cost</option>
           </Form.Select>
+        </Form.Group>
+      </div>
+      <div className='rightFiltered'>
+        <Form.Group id='search'>
+            <Form.Control placeholder='Product Name' className='inputProduct' onChange={handleInputFilter}/>
+            <BiSearch className='icon'/>
         </Form.Group>
       </div>
     </div>

@@ -4,15 +4,36 @@ import Button from 'react-bootstrap/Button';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import '../MyCard/card.css';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { cartActions } from '../../features/CartList/cartSlice';
+import { ProductType } from '../../features/ProductTypes';
 
-const MyCard: React.FC = () => {
-  const products = useAppSelector((state) => state.products);
+type PropsTypes = {
+  products : ProductType[]
+  selected : string
+  filteredPrice : string
+  inputFiltered : string
+}
+
+const MyCard: React.FC<PropsTypes> = ({products,selected,filteredPrice,inputFiltered}) => {
   const dispatch = useAppDispatch();
+  
   return (
     <Row className='mt-5'>
-      {products?.map((el) => {
+      {products?.filter((el) => {
+        if(selected !== ''){
+          return el.category.toLowerCase().trim() === selected.toLowerCase().trim()
+        } else if( filteredPrice === 'low'){
+          return el.price <= 40
+        } else if( filteredPrice === 'expensive'){
+          return el.price > 40
+        } else if(inputFiltered.length > 2){
+          return el.title.toLowerCase().trim().includes(inputFiltered.toLowerCase().trim())
+        } else{
+          return el
+        }
+      })
+      .map((el) => {
         return (
           <Col lg={4} md={6} sm={12} key={el.id} className='d-flex justify-content-center align-items-start mt-4'>
             <Card key={el.id}>

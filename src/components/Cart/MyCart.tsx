@@ -4,6 +4,7 @@ import { AiFillPlusSquare } from 'react-icons/ai';
 import { AiFillMinusSquare } from 'react-icons/ai';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { cartActions } from '../../features/CartList/cartSlice';
+import { ProductType } from '../../features/ProductTypes';
 import './cart.css';
 
 type PropsTypes = {
@@ -14,10 +15,8 @@ type PropsTypes = {
 const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
   const cartItem = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch()
-  // const totalPrice = (items: StateType[]) => {
-  //   return cartItem.reduce((acc: number, curr) => acc + curr.price * curr.quantity, 0);
-  // };
-  console.log(cartItem);
+ 
+  const totalPrice =(arr:ProductType[]) => arr.reduce((acc,curr) => (acc + curr.total_price),0)
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement='end'>
@@ -35,7 +34,7 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
                   <h5>{el.title}</h5>
                   <div className='cartRow2'>
                     <p>Price : ${el.price}</p>
-                    <p>Total : ${(el.price * el.quantity).toFixed(2)}</p>
+                    <p>Total : ${el.total_price}</p>
                   </div>
                   <div className='cartRow3'>
                     <AiFillMinusSquare style={{ fontSize: '35px', cursor: 'pointer' }} onClick={() => dispatch(cartActions.removeQuantity(el))} />
@@ -51,13 +50,13 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
             );
           })
         )}
-        <div className='total'>
-          <div className='total-val'>
-            <h5>Total :</h5>
-            <h5>$1321</h5>
+          <div className='total'>
+            <div className='total-val'>
+              <h5>Total :</h5>
+              <h5>${totalPrice(cartItem)}</h5>
+            </div>
+            <Button variant='success'>Checkout</Button>
           </div>
-          <Button>Checkout</Button>
-        </div>
       </Offcanvas.Body>
     </Offcanvas>
   );

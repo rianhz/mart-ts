@@ -9,9 +9,13 @@ import { productActions } from '../features/ProductList/ProductSlice';
 
 const ListProduct: React.FC = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state);
-  const [show, setShow] = useState(false);
+  const products = useAppSelector((state) => state.products);
 
+  const [selected,setSelected] = useState<string>('')
+  const [filteredPrice,setFilteredPrice] = useState<string>('')
+  const [inputFiltered,setInputFiltered] = useState<string>('')
+
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -21,14 +25,26 @@ const ListProduct: React.FC = () => {
     });
   }, [dispatch]);
 
-  console.log(products);
+  const handleSelect = (e:React.ChangeEvent<HTMLSelectElement>) => {
+    setSelected(e.target.value)
+  }
 
+  const handlePrice = (e:React.ChangeEvent<HTMLSelectElement>) => {
+    setFilteredPrice(e.target.value)
+  }
+
+  const handleInputFilter = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setInputFiltered(e.target.value)
+  }
+
+ console.log(inputFiltered);
+ 
   return (
     <>
       <HeaderMart handleShow={handleShow} />
-      <FilterBy />
-      <MyCard />
-      <MyCart show={show} handleClose={handleClose} />
+      <FilterBy handleSelect={handleSelect} handlePrice={handlePrice} handleInputFilter={handleInputFilter}/>
+      <MyCard products={products} selected={selected} filteredPrice={filteredPrice} inputFiltered={inputFiltered}/>
+      <MyCart show={show} handleClose={handleClose}  />
     </>
   );
 };
