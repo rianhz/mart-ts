@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  gap: 15px;
+  box-shadow: 0px 5px 10px -3px rgb(183, 168, 168);
+  border-radius: 10px;
+  margin-top: 100px;
+}
+
+.leftFiltered {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
+  gap: 15px;
+}
+
+.group {
+  padding-right: 20px;
+  position: relative;
+}
+
+.inputProduct:focus ~ .icons {
+  display: none;
+}

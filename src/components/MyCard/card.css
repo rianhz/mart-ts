@@ -1,0 +1,25 @@
+.card {
+  max-height: 400px !important;
+  height: 370px !important;
+  width: 17rem;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px -15px black;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px -10px black;
+}
+.card-img-top {
+  height: 150px;
+  padding: 0 20px;
+}
+
+img.card-img-top {
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
