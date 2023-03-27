@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Form from 'react-bootstrap/Form';
 import  './Filter.css';
 import { BiSearch } from 'react-icons/bi';
