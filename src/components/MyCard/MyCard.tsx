@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { Row } from 'react-bootstrap';
+import { Row, Spinner } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import '../MyCard/card.css';
 import { useAppDispatch } from '../../app/hooks';
@@ -13,14 +13,19 @@ type PropsTypes = {
   selected : string
   filteredPrice : string
   inputFiltered : string
+  spinner: boolean
 }
 
-const MyCard: React.FC<PropsTypes> = ({products,selected,filteredPrice,inputFiltered}) => {
+const MyCard: React.FC<PropsTypes> = ({products,selected,filteredPrice,inputFiltered,spinner}) => {
   
   const dispatch = useAppDispatch();
     
   return (
     <Row className='mt-5'>
+      
+    {spinner ?  <Spinner animation="border" className='m-auto' role="status">
+    <span className="visually-hidden ">Loading...</span>
+  </Spinner> : ''}
       {products?.filter((el) => {
         if(selected !== ''){
           return el.category.toLowerCase().trim() === selected.toLowerCase().trim()

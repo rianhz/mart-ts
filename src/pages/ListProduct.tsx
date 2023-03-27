@@ -4,6 +4,7 @@ import axios from 'axios';
 import FilterBy from '../components/FilterBy/FilterBy';
 import MyCard from '../components/MyCard/MyCard';
 import { productActions } from '../features/ProductList/ProductSlice';
+import { Container, Spinner } from 'react-bootstrap';
 
 const ListProduct: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -13,11 +14,12 @@ const ListProduct: React.FC = () => {
   const [filteredPrice,setFilteredPrice] = useState<string>('')
   const [inputFiltered,setInputFiltered] = useState<string>('')
  
+  const [spinner,setSpinner] = useState<boolean>(true)
 
   useEffect(() => {
     axios.get('https://6406bf75862956433e58b05e.mockapi.io/restaurants').then((res) => {
       dispatch(productActions.getProducts(res.data));
-    });
+    }).finally(() => setSpinner(false));
   }, [dispatch]);
 
   const handleSelect = (e:React.ChangeEvent<HTMLSelectElement>) => {
@@ -35,8 +37,9 @@ const ListProduct: React.FC = () => {
   return (
     <>
       <FilterBy handleSelect={handleSelect} handlePrice={handlePrice} handleInputFilter={handleInputFilter}/>
-      <MyCard products={products} selected={selected} filteredPrice={filteredPrice} inputFiltered={inputFiltered}/>
+      <MyCard products={products} selected={selected} filteredPrice={filteredPrice} inputFiltered={inputFiltered} spinner={spinner}/>
       
+
     </>
   );
 };
