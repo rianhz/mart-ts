@@ -34,7 +34,7 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
                   <h5>{el.title}</h5>
                   <div className='cartRow2'>
                     <p>Price : ${el.price}</p>
-                    <p>Total : ${el.total_price}</p>
+                    <p>Total : ${el.total_price.toFixed(2)}</p>
                   </div>
                   <div className='cartRow3'>
                     <AiFillMinusSquare style={{ fontSize: '35px', cursor: 'pointer' }} onClick={() => dispatch(cartActions.removeQuantity(el))} />
@@ -53,7 +53,7 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
           <div className='total'>
             <div className='total-val'>
               <h5>Total :</h5>
-              <h5>${totalPrice(cartItem)}</h5>
+              <h5>${totalPrice(cartItem).toFixed(2)}</h5>
             </div>
             <Button variant='success'>Checkout</Button>
           </div>

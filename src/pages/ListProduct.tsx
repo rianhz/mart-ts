@@ -13,10 +13,11 @@ const ListProduct: React.FC = () => {
   const [filteredPrice,setFilteredPrice] = useState<string>('')
   const [inputFiltered,setInputFiltered] = useState<string>('')
 
+ console.log(products);
  
 
   useEffect(() => {
-    axios.get('http://localhost:3000/product').then((res) => {
+    axios.get('https://6406bf75862956433e58b05e.mockapi.io/restaurants').then((res) => {
       dispatch(productActions.getProducts(res.data));
     });
   }, [dispatch]);
