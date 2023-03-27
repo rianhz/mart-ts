@@ -21,7 +21,7 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
   return (
     <Offcanvas show={show} onHide={handleClose} placement='end'>
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Your Shopping Cart</Offcanvas.Title>
+        <Offcanvas.Title>Total : ${totalPrice(cartItem).toFixed(2)}</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body className='position-relative'>
         {cartItem.length === 0 ? (
@@ -51,10 +51,6 @@ const MyCart: React.FC<PropsTypes> = ({ show, handleClose }) => {
           })
         )}
           <div className='total'>
-            <div className='total-val'>
-              <h5>Total :</h5>
-              <h5>${totalPrice(cartItem).toFixed(2)}</h5>
-            </div>
             <Button variant='success'>Checkout</Button>
           </div>
       </Offcanvas.Body>

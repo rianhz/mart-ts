@@ -4,7 +4,6 @@ import axios from 'axios';
 import FilterBy from '../components/FilterBy/FilterBy';
 import MyCard from '../components/MyCard/MyCard';
 import { productActions } from '../features/ProductList/ProductSlice';
-import { Container, Spinner } from 'react-bootstrap';
 
 const ListProduct: React.FC = () => {
   const dispatch = useAppDispatch();
