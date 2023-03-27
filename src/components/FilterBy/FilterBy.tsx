@@ -13,22 +13,18 @@ const FilterBy: React.FC<PropsTypes> = ({handleSelect,handlePrice,handleInputFil
   return (
     <div className='contain'>
       <div className='leftFiltered'>
-        <Form.Group>
-          <Form.Select onChange={handleSelect}>
+          <Form.Select onChange={handleSelect} >
             <option value=''>Category</option>
             <option value='Electronics'>Electronics</option>
             <option value={`Women's Clothing`}>Women's Clothing</option>
             <option value={`Men's Clothing`}>Men's Clothing</option>
             <option value='Jewelery'>Jewelery</option>
           </Form.Select>
-        </Form.Group>
-        <Form.Group>
-          <Form.Select onChange={handlePrice}>
+          <Form.Select onChange={handlePrice} >
             <option value=''>Price</option>
             <option value='low'>Low Cost</option>
             <option value='expensive'>High Cost</option>
           </Form.Select>
-        </Form.Group>
       </div>
       <div className='rightFiltered'>
         <Form.Group id='search'>

@@ -41,7 +41,7 @@ const MyCard: React.FC<PropsTypes> = ({products,selected,filteredPrice,inputFilt
               <Card.Img variant='top' src={el.image} />
               <Card.Body>
                 <Card.Title>{el.title}</Card.Title>
-                <Card.Text className='text-left d-block'>${el.price}</Card.Text>
+                <Card.Text className='text-center d-block'>${el.price}</Card.Text>
                 <Button variant='success' onClick={() => dispatch(cartActions.addToCart(el))}>
                   ADD TO CART
                 </Button>

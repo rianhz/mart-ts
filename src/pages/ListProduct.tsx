@@ -12,8 +12,6 @@ const ListProduct: React.FC = () => {
   const [selected,setSelected] = useState<string>('')
   const [filteredPrice,setFilteredPrice] = useState<string>('')
   const [inputFiltered,setInputFiltered] = useState<string>('')
-
- console.log(products);
  
 
   useEffect(() => {

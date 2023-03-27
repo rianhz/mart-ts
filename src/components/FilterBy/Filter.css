@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  padding: 20px 0;
   gap: 15px;
   box-shadow: 0px 5px 10px -3px rgb(183, 168, 168);
   border-radius: 10px;
@@ -36,4 +36,26 @@
 
 .inputProduct:focus ~ .icon {
   display: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .contain{
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .leftFiltered{
+    padding: 0;
+    width: 100% !important;
+    justify-content: center;
+ 
+  }
+  .rightFiltered{
+    width: 100%;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  
 }
