@@ -12,6 +12,11 @@
 .card-img-top {
   height: 150px;
   padding: 0 20px;
+  transition: all .3s;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05) !important;
 }
 
 img.card-img-top {

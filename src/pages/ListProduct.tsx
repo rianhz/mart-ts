@@ -3,7 +3,8 @@ import {  useAppSelector } from '../app/hooks';
 import FilterBy from '../components/FilterBy/FilterBy';
 import MyCard from '../components/MyCard/MyCard';
 import { ProductType } from '../features/ProductTypes';
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
+import {Row,Col} from 'react-bootstrap'
 
 type PropsTypes = {
   filtering : ProductType[]
@@ -48,19 +49,16 @@ const ListProduct: React.FC<PropsTypes> = ({filtering,setFiltering,spinner}) => 
   }
   
   return (
-    <>
+    <Row >
       <FilterBy handleSelect={handleSelect} handlePrice={handlePrice} handleInputFilter={handleInputFilter}/>
-        <Row>
-        {spinner ?  <Spinner animation="border" className='m-auto mt-5' role="status"></Spinner> : ''}
-            {filtering.map((el) => {
-              return (    
-                <Col lg={4} md={6} sm={12} key={el.id}  className='d-flex justify-content-center align-items-start mt-4'>
-                    <MyCard prod={el} />
+          {spinner ?  <Spinner animation="border" className='m-auto mt-5' role="status"></Spinner> : ''}
+            {filtering.map((el) => (
+                <Col lg={4} md={6} sm={12} key={el.id} className='d-flex justify-content-center align-items-start mt-4'>    
+                  <MyCard prod={el}  />
                 </Col>
-                );
-              })}
-        </Row>
-    </>
+              ))
+            }
+    </Row>
   );
 };
 

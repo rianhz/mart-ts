@@ -7,6 +7,7 @@ import NavigationBar from './components/Navbar/NavigationBar';
 import { productActions } from './features/ProductList/ProductSlice';
 import { ProductType } from './features/ProductTypes';
 import ListProduct from './pages/ListProduct';
+import './App.css'
 
 function App() {
   const dispatch = useAppDispatch()
