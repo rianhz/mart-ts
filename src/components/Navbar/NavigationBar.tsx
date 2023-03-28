@@ -25,7 +25,7 @@ const NavigationBar:React.FC<PropsTypes> = ({handleShow}) => {
             </Navbar.Text>
         </Navbar.Brand>
        
-        <div className='icons-wrapper position-relative rounded-circle border border-light text-light p-1 ' onClick={handleShow}>
+        <div className='icons-wrapper position-relative rounded-circle text-light p-1 ' onClick={handleShow}>
           <AiOutlineShoppingCart style={{ fontSize: '30px' }} />
           {cartItem.length < 1 ? '' : <p className='totalCart'>{cartItem.length}</p>}
         </div>
