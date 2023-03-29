@@ -22,8 +22,6 @@ function App() {
 
 
   const [filtering,setFiltering] = useState<ProductType[]>([])
-
-  
  
   const [spinner,setSpinner] = useState<boolean>(true)
   const [show, setShow] = useState(false);

@@ -19,17 +19,37 @@ const ListProduct: React.FC<PropsTypes> = ({filtering,setFiltering,spinner}) => 
   const [inputFiltered,setInputFiltered] = useState<string>('')
 
   useEffect(() => {
-    if(selected !== ''){
+    if(selected !== '' && filteredPrice === 'low'){
+      let selectz = products.filter((el) => el.category === selected && el.price <= 200)
+
+      setFiltering(selectz)
+    } else if(selected !== '' && filteredPrice === 'expensive'){
+      let selectz = products.filter((el) => el.category === selected && el.price > 200)
+
+      setFiltering(selectz)
+    } else if(selected !== '' && filteredPrice === 'low' && inputFiltered !== ''){
+      let selectz = products.filter((el) => el.category === selected && el.price <= 200 && el.title.toLowerCase().includes(inputFiltered))
+
+      setFiltering(selectz)
+    } else if(selected !== '' && filteredPrice === 'expensive' && inputFiltered !== ''){
+      let selectz = products.filter((el) => el.category === selected && el.price > 200 && el.title.toLowerCase().includes(inputFiltered))
+
+      setFiltering(selectz)
+    } else if(selected !== ''){
       let selectz = products.filter(el => el.category === selected)
+
       setFiltering(selectz)
     } else if(filteredPrice === 'low') {
-      let selectz = products.filter(el => el.price <= 50)
+      let selectz = products.filter(el => el.price <= 200)
+
       setFiltering(selectz)
     } else if(filteredPrice === 'expensive') {
-      let selectz = products.filter(el => el.price > 50)
+      let selectz = products.filter(el => el.price > 200)
+
       setFiltering(selectz)
     } else if(inputFiltered !== '') {
       let selectz = products.filter(el => el.title.toLowerCase().includes(inputFiltered))
+
       setFiltering(selectz)
     } else{
       setFiltering(products)
@@ -45,7 +65,12 @@ const ListProduct: React.FC<PropsTypes> = ({filtering,setFiltering,spinner}) => 
   }
 
   const handleInputFilter = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setInputFiltered(e.target.value.toLowerCase())
+    let val = e.target.value
+    if(val.length > 3){
+      setSelected('')
+      setFilteredPrice('')
+    }
+    setInputFiltered(val.toLowerCase())
   }
   
   return (
